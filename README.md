@@ -1,42 +1,33 @@
+Rapport Assignment 2 WebView
 
-# Rapport
-
-**Skriv din rapport här!**
-
-_Du kan ta bort all text som finns sedan tidigare_.
-
-## Följande grundsyn gäller dugga-svar:
-
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+Kod och skärmdumpar
+![Internal Web Page](InternalWebPage.png)
+![External Web Page](ExternalWebPage.png)
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
+if (id == R.id.action_internal_web) {
+    Log.d("==>","Will display internal web page");
+    showInternalWebPage();
+    return true;
 }
 ```
 
-Bilder läggs i samma mapp som markdown-filen.
+```
+public void showInternalWebPage(){
+    myWebView.loadUrl("file:///android_asset/about.html");
+}
+```
 
-![](android.png)
+Beskrivning av kod
+För att få min app att visa upp min lokala sida måste appen först kolla så att använderan har valt att visa upp den lokala sidan, detta görs med en if sats som kollar om id på menyn är internal är eller extenal.
+Om id är internal så kallar koden på showInternalWebPage och returnerar ett sant värde. När koden har kallat på showinternalWebPage kommer den köra koden inom det stycket kod vilket innehåller en webview men en url,
+denna url:en hänvisas till en fil som heter about.html som är en informations sida om appen och laddar fram den när man startar upp appen.
 
-Läs gärna:
+Diskussion
+Utöver att skapa en internal Web Page så har jag också skapat en WebView som ser till att appen kan ladda in hemsidor i sig själv, en Web View Client som gör att hemsidorna som laddas in i Webview syns i själva appen,
+istället för att öppna upp chrome appen och ladda den valda hemsidan. Till sist har jag också skapat en External Web View client som laddar in en hemsida i Web View Client, just nu laddar den in his hemsida men kan
+bli bytt till vilken hemsidan man än vill att appen ska ladda in.
 
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
+
+
+
